@@ -1,0 +1,300 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 1px, rgb(11, 11, 36);
+    height: 850px;
+}
+
+
+.header{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+}
+
+.header_home{
+    height: 50px;
+    width: 100%;
+    position:absolute;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
+
+}
+    
+.left-nav{
+    width: 23.33%;
+    text-align: center;
+    
+
+}
+.logo{
+    width: 300px;
+}
+.middle-nav{
+    width: 38.33%;
+   
+
+}
+.right-nav{
+    width: 38.33%;
+    display: flex;
+    flex-direction: row;
+    
+}
+ul{
+    display: flex;
+    list-style: none;
+    text-align: center;
+    margin-right: 10px;
+    width: 80%;
+    margin:10px;
+    justify-content: space-between;
+    font-size: 20px;
+    
+}
+
+.ab,li {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.ab2{
+    text-decoration: none;
+    color:rgb(11, 11, 36);
+}
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 860px;
+    text-align: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 50px;
+}
+.mySlides {
+    display: none;
+}
+.mySlides img {
+    height: 860px;
+}
+.slide_Text {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 70px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 40px;
+}
+
+.slide_Text_P{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+.Itinerary-button{
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(10, 162, 250);
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 7px;
+}
+.Itinerary-button:hover{
+    background-color: rgb(10, 162, 250);
+    color: rgb(255, 255, 255);
+
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.active:hover{
+    background-color: #717171;
+}
+.experience_page{
+    height:300px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    padding: 0;    
+
+}
+.expereience_Container1{
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    width: 500px;
+    height: 250px;
+    margin: 25px;
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    padding: 10px;
+
+}
+.expereience_Container2{
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    margin: 25px;
+    padding: 10px;
+    width: 500px;
+    height: 250px;
+
+
+}
+.expereience_Container3{
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    width: 500px;
+    height: 250px;
+    margin: 25px;
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    padding: 10px;
+
+}
+.expereience_Container4{
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+     /* Remove default margin */
+    padding: 10px;
+    margin: 25px;
+    width: 500px;
+    height: 250px;
+
+
+}
+.expereience_Text{
+    font-size: 50px;
+    color: rgb(11, 11, 36);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 0;
+}
+.page_with_info{
+    display: flex;
+    flex-direction: row;
+    
+
+}
+.with_info1{
+    width: 350px;
+    height: 250px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info2{
+    width: 450px;
+    
+}
+.with_info3{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info4{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info5{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info6{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+
+
+
+
+@media (max-width: 768px) {
+    .slideshow-container  {
+        max-width: 90%;
+    }
+}
+@media (max-width: 576px) {
+    .slideshow-container  {
+        max-width: 95%;
+    }
+}

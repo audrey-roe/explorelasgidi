@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 1px, rgb(11, 11, 36);
+    background-image: url('../static/Images/signback.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+
+
+.header{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+}
+
+.header_home{
+    height: 50px;
+    width: 100%;
+    position:absolute;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
+
+}
+    
+.left-nav{
+    width: 23.33%;
+    text-align: center;
+    
+
+}
+.logo{
+    width: 300px;
+}
+.middle-nav{
+    width: 38.33%;
+   
+
+}
+.right-nav{
+    width: 38.33%;
+    display: flex;
+    flex-direction: row;
+    
+}
+ul{
+    display: flex;
+    list-style: none;
+    text-align: center;
+    margin-right: 10px;
+    width: 80%;
+    margin:10px;
+    justify-content: space-between;
+    font-size: 20px;
+    
+}
+
+.ab,li {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.ab2{
+    text-decoration: none;
+    color:rgb(11, 11, 36);
+}
+hr {
+    border: 2px solid  rgb(5, 5, 69); /* 2px width, solid style, #333 color (dark gray) */
+    width: 50%; /* Set the width to 50% of the container */
+    margin: 10px auto;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+/*LINE BAR HOVER*/
+hr:hover {
+    border: 1px solid #0CC0DF; /* 2px width, solid style, #333 color (dark gray) */
+    width: 100%; /* Set the width to 50% of the container */
+    margin-bottom: 10px;
+}
+.expereience_Name{
+  position: absolute;
+  color:white;
+  font-size: 35px;
+  right: 20px;
+  bottom: 10px;
+
+
+}
+.expereience_Text{
+  font-size: 50px;
+  color: rgb(11, 11, 36);
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 0;
+}
+  
+  .container {
+    display: flex;
+    height: 100%;
+  }
+  .picture_part{
+    background-color: bisque;
+    border-radius: 8px;
+    display: flex;
+    width: 900px;
+    height: 570px;
+    margin-right: 25px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background-image: url('../static/Images/signup.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+.main-container{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
+.Schedule-main-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+
+}
+.Date_part{
+    display: flex;
+    width: 700px;
+    height: 450px;
+    margin-left: 35px;
+    margin-right: 25px;
+    margin-top: 75px;
+    border: 2px, solid, #021c21;
+    
+}
+ .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #e1e0e09c;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px, solid, #021c21;
+    text-align: center;
+    align-items: center;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+ 
+  .split {
+    flex: 1;
+    transition: flex 0.5s ease;
+    overflow: hidden;
+  }
+  
+  .left {
+    background-color: #f2f2f2;
+  }
+  
+  .right {
+    background-color: #ccc;
+  }
+  
+  .form {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    border: 2px, solid, #26a9f5;
+    width: 500px;
+  }
+  
+  .form input{
+    width: 500px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 100px;
+    border-radius: 6px;
+  }
+  
+  .form p {
+    margin-top: 10px;
+  }
+  
+  .form p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  
+@media (max-width: 768px) {
+    .slideshow-container  {
+        max-width: 90%;
+    }
+}
+@media (max-width: 576px) {
+    .slideshow-container  {
+        max-width: 95%;
+    }
+}

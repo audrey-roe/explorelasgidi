@@ -1,0 +1,203 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <title>Tour Scheduling</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'Time_and_Date.css'%}" />
+  <link rel="icon" type="image/png" href="{% static 'logo2.png' %}" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT8Q13ktFqswXKZvO03GdmARhXxDUmMt4&libraries=places"></script>
+
+</head>
+
+<body>
+  <div class="header">
+    <div class="left-nav">
+      <img class="logo" href="{% url 'home'%}" src="{%static 'logo2.png'%}" alt="Logo">
+    </div>
+    <div class="middle-nav"></div>
+    <div class="right-nav">
+      <ul>
+        <li><a class="ab2" href="{% url 'home'%}">Home</a></li>
+        <li><a class="ab2" href="{% url 'about_us'%}">About us</a></li>
+        {% if user.is_authenticated %}
+        <li><a class="ab2" href="{% url 'logout_view'%}">Logout</a></li>
+        {% else %}
+        <li><a class="ab2" href="{% url 'sign_up'%}">Sign in/Sign up</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+  <p class="expereience_Text">Schedule your trip</p>
+  <hr>
+  <div class="main-container">
+    <div class="Schedule-main-box">
+      <div class="picture_part">
+        <div id="map" style="width: 100%; height: 570px;" required></div>
+      </div>
+      <div class="Date_part">
+        <div class="container">
+          <h4>SELECT DATE, TIME, AND NUMBER OF PEOPLE FOR YOUR TRIP</h4>
+          <form action="{% url 'schedule_trip'%}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="date">Date:</label>
+              <input type="text" class="form-control custom-date-input" id="date" name="date" autocomplete="on"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="start-time">From</label>
+              <select class="form-control" id="time" name="time">
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+              </select>
+              <div class="form-group">
+                <label for="end-time">To</label>
+                <select class="form-control" id="end-time" name="end-time" required>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                  <option value="17:00">5:00 PM</option>
+                  <option value="18:00">6:00 PM</option>
+                  <option value="19:00">7:00 PM</option>
+                  <option value="20:00">8:00 PM</option>
+                  <option value="21:00">9:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="people">Number of People:</label>
+              <select class="form-control" id="people" name="people" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <label for="location">Pick up location:</label>
+              <div id="locationDisplay" name="locationDisplay" required></div>
+              <input type="hidden" id="selectedLocation" name="selectedLocation" value="">
+
+            </div>
+            <button class="btn btn-primary" type="submit">Schedule Trip</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $('#date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+
+    function initMap() {
+        // Initialize map
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 6.5244, lng: 3.3792 }, // Default center (Lagos)
+            zoom: 12 // Default zoom level
+        });
+
+        // Get user's current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Set map center to user's current location
+                map.setCenter(userLocation);
+
+                // Add draggable marker at user's current location
+                var marker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    draggable: true // Allow marker to be dragged
+                });
+
+                // Add event listener to update marker position when dragged
+                marker.addListener('dragend', function() {
+                    var newPosition = marker.getPosition();
+                    console.log('New marker position:', newPosition.lat(), newPosition.lng());
+                });
+                
+                // Add click event listener to the map
+                map.addListener('click', function(event) {
+                    // Reverse geocode the clicked coordinates to get the location name
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ location: event.latLng }, function(results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                                // Get the location name from the reverse geocoding result
+                                var locationName = results[0].formatted_address;
+                                
+                                // Update the marker's title to the location name
+                                marker.setTitle(locationName);
+                                
+                                // Display the location name in the location display box
+                                document.getElementById('locationDisplay').innerText = locationName;
+                                document.getElementById("selectedLocation").value = locationName;
+
+                            } else {
+                                window.alert('No results found');
+                            }
+                        } else {
+                            window.alert('Geocoder failed due to: ' + status);
+                        }
+                    });
+                });
+
+            });
+        } else {
+            window.alert('Geolocation is not supported by this browser.');
+        }
+    }
+
+    // Call the initMap function after the page loads
+    window.onload = function() {
+        initMap();
+    };
+</script>
+
+
+
+</body>
+
+</html>

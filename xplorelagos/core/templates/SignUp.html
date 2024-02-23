@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <title>Tour Scheduling</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'SignUp.css'%}" />
+  <link rel="icon" type="image/png" href="{% static 'logo2.png' %}" />
+
+</head>
+
+<body>
+  <div class="header">
+    <div class="left-nav">
+      <img class="logo" src="{% static 'logo2.png'%}" alt="Logo">
+    </div>
+    <div class="middle-nav"></div>
+    <div class="right-nav">
+      <ul>
+        <li><a class="ab2" href="{% url 'home'%}">Home</a></li>
+        <li><a class="ab2" href="{% url 'about_us'%}">About us</a></li>
+        <li><a class="ab2" href="{% url 'sign_up'%}">Sign in</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="expereience_Text">Create Your Account and Join Us Today!</p>
+  <hr>
+  <div class="main-container">
+    <div class="Schedule-main-box">
+      <div class="Date_part">
+        <div class="container">
+          <div class="form">
+            <h2>Sign Up</h2>
+            {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-danger" role="alert">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          {% endif %}
+            <form method="POST" role="form" id="sign_up" action="{% url 'sign_up' %}">
+              {% csrf_token %}
+              <input type="text" placeholder="Name" name="first_name" required>
+              <input type="text" placeholder="Last Name" name="last_name" required>
+              <input type="email" placeholder="Email" name="email" required>
+              <input type="tel" placeholder="Phone Number" name="phone" required>
+              <input type="text" placeholder="Country" name="country" required>
+              <input type="password" id="password" placeholder="Password" name="password" required>
+              <input type="password" id="confirm_password" placeholder="Repeat password" name="confirm_password" required>
+              <button type="submit" id="submit-button">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="{% url 'login' %}" id="signInLink">Sign In</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="picture_part"></div>
+    </div>
+  </div>
+
+  <script>
+    function closeErrors() {
+      var errorMessages = document.getElementById('error-messages');
+      errorMessages.classList.remove('show');
+    }
+  </script>
+</body>
+
+</html>

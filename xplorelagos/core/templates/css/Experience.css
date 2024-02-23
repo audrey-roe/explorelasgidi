@@ -1,0 +1,288 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 1px, rgb(11, 11, 36);
+    background-image: url('Images/1976998.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+
+
+.header{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+}
+
+.header_home{
+    height: 50px;
+    width: 100%;
+    position:absolute;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+    
+.left-nav{
+    width: 23.33%;
+    text-align: center;
+}
+
+.logo{
+    width: 300px;
+}
+
+.middle-nav{
+    width: 38.33%;
+   
+
+}
+
+.right-nav{
+    width: 38.33%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+ul{
+    display: flex;
+    list-style: none;
+    text-align: center;
+    margin-right: 10px;
+    width: 80%;
+    margin:10px;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.ab,li {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.ab2{
+    text-decoration: none;
+    color:rgb(11, 11, 36);
+}
+
+hr {
+    border: 2px solid  rgb(5, 5, 69); /* 2px width, solid style, #333 color (dark gray) */
+    width: 50%; /* Set the width to 50% of the container */
+    margin: 10px auto;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+/*LINE BAR HOVER*/
+hr:hover {
+    border: 1px solid #0CC0DF; /* 2px width, solid style, #333 color (dark gray) */
+    width: 100%; /* Set the width to 50% of the container */
+    margin-bottom: 10px;
+}
+.experience_page{
+    height:300px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    padding: 0;    
+
+}
+#clickableDiv1{
+    cursor: pointer;
+  }
+#clickableDiv2 {
+    cursor: pointer;
+  }
+#clickableDiv4 {
+    cursor: pointer;
+}
+
+#clickableDiv3  {
+    cursor: pointer;
+  }
+.experience_Container1{
+    background-image: url('Images/LEKKI_CONSERVATION_CENTRE_\(LCC\)_09.jpg');
+    width: 500px;
+    height: 250px;
+    position: relative;
+    margin: 25px;
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+
+
+}
+
+.experience_Description {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.347);
+    color: #fff;
+    padding: 0;
+    text-align: center;
+    align-items: center;
+    width: 460px;
+    border-radius: 1px;
+  }
+  
+  .experience_Container1:hover .experience_Description {
+    display: block;
+  }
+
+.experience_Container2{
+    background-image: url('Images/CULTURAL/NIKE/IMG_20190209_122155_2-768x576.jpg');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    position: relative;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    margin: 25px;
+    
+    width: 500px;
+    height: 250px;
+
+
+}
+.experience_Container2:hover .experience_Description {
+    display: block;
+  }
+.experience_Container3{
+    background-image: url('Images/CULINARY/NOK/Ey7eMlHWQAQoC90.jpg');
+    width: 500px;
+    height: 250px;
+    margin: 25px;
+    position: relative;
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+
+}
+.experience_Container3:hover .experience_Description {
+    display: block;
+  }
+.experience_Container4{
+    background-image: url('Images/8a.jpg');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+     /* Remove default margin */
+     position: relative;
+    margin: 25px;
+    width: 500px;
+    height: 250px;
+
+
+}
+.experience_Container4:hover .experience_Description {
+    display: block;
+  }
+.expereience_Name{
+    position: absolute;
+    color:white;
+    font-size: 35px;
+    right: 20px;
+    bottom: 10px;
+}
+.expereience_Text{
+    font-size: 50px;
+    color: rgb(11, 11, 36);
+    align-items: center;
+    display: flex;
+    margin: 0px, 0px, 0px, 0px;
+    margin-top: 0px;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+.page_with_info{
+    display: flex;
+    flex-direction: row;
+    
+
+}
+.with_info1{
+    width: 350px;
+    height: 250px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info2{
+    width: 450px;
+    
+}
+.with_info3{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info4{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info5{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+.with_info6{
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-right: 30px;
+    background-image: url('Images/Ikoyi_Link_Bridge_Night_View\,_Lagos._Nigeria_\(3\)_a.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+
+@media (max-width: 768px) {
+    .slideshow-container  {
+        max-width: 90%;
+    }
+}
+@media (max-width: 576px) {
+    .slideshow-container  {
+        max-width: 95%;
+    }
+}

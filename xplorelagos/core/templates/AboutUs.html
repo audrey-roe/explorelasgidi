@@ -1,0 +1,106 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'About-us.css'%}" />
+    <link rel="icon" type="image/png" href="{% static 'logo2.png' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <title>Explore Lagos/Experience</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="left-nav">
+        <img class="logo" src="{% static 'logo1.png.png'%}" alt="Logo" />
+      </div>
+      <div class="middle-nav"></div>
+      <div class="right-nav">
+        <ul>
+          <li><a class="ab2" href="{% url 'home'%}">Home</a></li>
+          <li><a class="ab2" href="">About us</a></li>
+          {% if user.is_authenticated %}
+          <li><a class="ab2" href="{% url 'logout_view'%}">Logout</a></li>
+          {% else %}
+          <li><a class="ab2" href="{% url 'sign_up'%}">Sign in/Sign up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <p class="expereience_Text">About Us</p>
+    <hr />
+    <p class="para">
+      Planning a trip to a new city can be overwhelming. From finding hidden
+      gems to navigating the vibrant city, the logistics can quickly become a
+      burden. At Explore Lagos, we take the stress out of exploring. We're
+      passionate about showcasing the true essence of Lagos, offering carefully
+      curated itineraries designed to immerse you in the city's rich culture,
+      diverse neighbourhoods, and world-class offerings. Simply choose your
+      pre-designed itinerary based on your interests and desired experiences.
+      Let us know your schedule, and we'll arrange everything - from
+      transportation and activities to expert guides and insider access. All you
+      need to do is show up and start making memories. Warning: Lagos might
+      steal your heart. (Don't worry, we'll give it back safely.)
+    </p>
+    <div class="centered-div">
+      <div class="team-section">
+        <div class="team-member">
+          <div class="member-image"></div>
+          <h3>Deoye Wilson</h3>
+          <p>Back-end Developer</p>
+          <p></p>
+        </div>
+        <div class="team-member">
+          <div class="member-image"></div>
+          <h3>Blessing Sambe</h3>
+          <p>Content Curator</p>
+          <p></p>
+        </div>
+        <div class="team-member">
+          <div class="member-image"></div>
+          <h3>Abba Said Uba</h3>
+          <p>Front-end Developer</p>
+          <p></p>
+        </div>
+        <div class="team-member">
+          <div class="member-image"></div>
+          <h3>Love Mosaku</h3>
+          <p>Communications Designer</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <!--FOOTER LOGO DIV -->
+      <div class="footer-left">
+        <img class="logo-1" src="Images/logo1.png.png" alt="Logo" />
+      </div>
+      <!--FOOTER CONTACT DIV -->
+      <div class="footer-middle">
+        @@ -68,9 +74,9 @@
+        <h3>CONTRACTS</h3>
+        <p>Phone+234 70321 01664</p>
+        <p>Phone+234 70321 01664</p>
+        <div class="Social">
+          <img class="sm" src="Images/facebook.png" alt="1" />
+          <img class="sm" src="Images/twitter.png" alt="1" />
+          <img class="sm" src="Images/instagram.png" alt="1" />
+        </div>
+        <p
+          style="
+            margin-top: 70px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgba(255, 255, 255, 0.181);
+          "
+        >
+          © 2023 Captain Tera. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

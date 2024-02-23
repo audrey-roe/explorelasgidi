@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 1px, rgb(11, 11, 36);
+    background-image: url('../static/Images/1991373.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    
+}
+
+
+.header{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+}
+
+.header_home{
+    height: 50px;
+    width: 100%;
+    position:absolute;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
+
+}
+    
+.left-nav{
+    width: 23.33%;
+    text-align: center;
+    
+
+}
+.logo{
+    width: 300px;
+}
+.middle-nav{
+    width: 38.33%;
+   
+
+}
+.right-nav{
+    width: 38.33%;
+    display: flex;
+    flex-direction: row;
+    
+}
+ul{
+    display: flex;
+    list-style: none;
+    text-align: center;
+    margin-right: 10px;
+    width: 80%;
+    margin:10px;
+    justify-content: space-between;
+    font-size: 20px;
+    
+}
+
+.ab,li {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.ab2{
+    text-decoration: none;
+    color:rgb(11, 11, 36);
+}
+hr {
+    border: 2px solid  rgb(5, 5, 69); /* 2px width, solid style, #333 color (dark gray) */
+    width: 50%; /* Set the width to 50% of the container */
+    margin: 10px auto;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+/*LINE BAR HOVER*/
+hr:hover {
+    border: 1px solid #0CC0DF; /* 2px width, solid style, #333 color (dark gray) */
+    width: 100%; /* Set the width to 50% of the container */
+    margin-bottom: 10px;
+}
+
+.expereience_Name{
+    position: absolute;
+    color:white;
+    font-size: 35px;
+    right: 20px;
+    bottom: 10px;
+
+
+}
+.expereience_Text{
+    font-size: 50px;
+    color: rgb(11, 11, 36);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.box1 {
+    width: 320px;
+    height: 250px;
+    background-image: url('../static/Images/LUXURY/Hov_beach_resort/83c221_669751648421440b88390ba275a92702_mv2.jpg');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 9px;
+
+}
+.box2 {
+    width: 320px;
+    height: 250px;
+    background-image: url('../static/Images/LUXURY/Jara_beach_resort/310b2a_1b1a397b916946238b38b09fba93e9f6~mv2.webp');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 9px;
+
+}
+.box3 {
+    width: 320px;
+    height: 250px;
+    background-image: url('../static/Images/LUXURY/La_capagne_tropicana/children-s-swimming-area.jpg');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 9px;
+
+}
+.box4 {
+    width: 320px;
+    height: 250px;
+    background-image: url('../static/Images/LUXURY/Laokwe_lakes_and_golf/ETTG_GOLF-TOURNAMENT_046-scaled.jpg');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 9px;
+
+}
+.box5 {
+    width: 320px;
+    height: 250px;
+    background-image: url('../static/Images/LUXURY/LAYGOS_WATERCRAFTS/8a.jpg');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 9px;
+
+}
+.box6 {
+    width: 320px;
+    height: 250px;
+    background-image: url('../static/Images/LUXURY/ZAZA/Moscow-Underground-Abuja.png');
+    background-size:cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 9px;
+
+}
+.Box-details{
+    position: absolute;
+    background-color: rgba(32, 31, 31, 0.327);
+    color: white;
+    top: 87%;
+    width: 290px;
+    left: 50%;
+    border: 2px solid rgb(255, 255, 255); /* Add border */
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+
+}
+.container h3 {
+    margin: 4px;
+    color: rgb(255, 255, 255);
+   
+}
+.Checkout{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 100px;
+    border-radius: 6px;
+  }
+
+.box label {
+    display: block;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .body {
+        max-width: 90%;
+    }
+}
+@media (max-width: 576px) {
+    .body  {
+        max-width: 95%;
+    }
+}

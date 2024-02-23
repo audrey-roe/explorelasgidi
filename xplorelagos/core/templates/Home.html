@@ -1,0 +1,105 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Home.css'%}" />
+    <link rel="icon" type="image/png" href="{% static 'logo2.png' %}" />
+
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Home</title>
+</head>
+<body>
+    <!--NAV BAR -->
+ 
+    <!--FIRST CONTENT DIV -->
+    <div class="slideshow-container">
+        <div class="header_home">
+            <div class="left-nav"> 
+                <img class="logo" src="{% static '/logo1.png.png'%}" alt="Logo">
+            </div>
+            <div class="middle-nav"></div>
+            <div class="right-nav">
+                <ul>
+                    <li><a class="ab" href="">Home</a></li>
+                    <li><a class="ab" href="{% url 'about_us'%}">About us</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a class="ab" href="{% url 'logout_view'%}">Logout</a></li>
+                    {% else %}
+                        <li><a class="ab" href="{% url 'sign_up'%}">Sign in/Sign up</a></li>
+                    {% endif %}    
+                </ul>
+            </div>
+        </div>
+        <H1 class="slide_Text"> READY TO EXPLORE <BR></BR> LAGOS?</H1>
+        <p class="slide_Text_P">First, select experiences that spark your interest</p>
+        <button class="Itinerary-button"onclick="window.location.href = '{%url 'experience'%}';">Get Your Itinerary</button>
+
+        <div class="mySlides">
+       <img src="{% static 'Civic_Centre_at_night,_Lagos_Nigeria.jpg'%}" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+            <img src="{% static 'Ikoyi_Link_Bridge_Night_View,_Lagos._Nigeria_(3)_a.png'%} " style="width: 100%">
+        </div>
+    
+        <div class="mySlides">
+            <img src="{% static 'National_arts_theatre_(14981772010).jpg'%}" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+            <img src="{% static 'LEKKI_CONSERVATION_CENTRE_(LCC)_09.jpg'%}" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+            <img src="{% static 'Beach_Line_in_Badagry,_Lagos_State-Nigeria.png'%}" style="width:100%">
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+   
+    
+    <script>
+        let slideIndex = 0;
+        showSlides();
+    
+        function showSlides() {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
+    
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+    
+            slideIndex++;
+    
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+    
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+    
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+    
+            setTimeout(showSlides, 2000); // Change slide every 2 seconds
+        }
+    
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+            
+        }
+    
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+    </script>
+       
+</html>
