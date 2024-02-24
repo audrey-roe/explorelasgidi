@@ -55,7 +55,7 @@
         <ul style="display: flex; flex: column" id="selectedActivities">
           {% for option in selected_options %}
             <li style="color: black; font-size: smaller;">Name: {{ option.name }}</li>
-            <li style="color: black; font-size: smaller;">Price: {{ option.price }}</li>
+            <li style="color: black; font-size: smaller;">Price: ${{ option.price }}</li>
 
           {% endfor %}
         </ul>
