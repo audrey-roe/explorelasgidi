@@ -73,13 +73,7 @@ def signup_view(request):
         form = CustomerUserCreationForm(form_data)
 
         if form.is_valid():
-            print('its valid')
             new_user = form.save()
-            # username = form.cleaned_data.get('username')
-            # email = form.cleaned_data.get('email')
-            # password = form.cleaned_data.get('password1')
-            # new_user = User.objects.create(username=username, email=email, password=password)
-
             user_extra = user_info_extend.objects.create(
                 user=new_user,
                 phone_number=phone,
@@ -133,11 +127,11 @@ def TandD(request):
             activity_price = activity['price']
             prices[activity_name] = activity_price
             
-        request.session['selected_activities'] = selected_activities
+        request.session['selected_options'] = selected_activities
         request.session['prices'] = prices
 
         context = {
-            'selected_activities': selected_activities,
+            'selected_options': selected_activities,
             'prices': prices,
         }
         
@@ -187,7 +181,7 @@ def dashboard(request):
             selected_noPeople = request.session.get('selected_noPeople')
             selected_location = request.session.get('selected_location')
             prices = request.session.get('prices', {})
-
+            print(selected_options)
             context = {
                         'user_name': user.first_name + ' ' + user.last_name,
                         'user_email': user.email,
