@@ -22,21 +22,18 @@ def logout_view(request):
 def login_view(request):
     if request.method == 'POST':
         if User.objects.filter(email=request.POST['email']).exists():
-            user=User.objects.get(email=request.POST["email"])
-            login(request, user)
-            request.session['user_id'] = user.id
-            return redirect('dashboard')
-        
-            # user = authenticate(request,
-            #     username=User.objects.get(email=request.POST["email"]).username,
-            #     password=request.POST["password"]
-            # )
+            user = authenticate(request,
+                username=User.objects.get(email=request.POST["email"]).username,
+                password=request.POST["password"]
+            )
 
-            # if user is not None:
-                
-            # else:
-            #     messages.error(request, 'Incorrect email or password')
-            #     return redirect('login')
+            if user is not None:
+                login(request, user)
+                request.session['user_id'] = user.id
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'Incorrect email or password')
+                return redirect('login')
         else:
             messages.error(request, "User doesn't exist. If you don't have an account please create one")
             return redirect('login')
@@ -48,7 +45,6 @@ def login_view(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        print('it posted')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
@@ -57,7 +53,7 @@ def signup_view(request):
         phone = request.POST.get('phone')
         country = request.POST.get('country')
         qwer = email.split('@', 1)[0]
-        
+        print(qwer)
         if password != confirm_password:
             messages.error(request, 'Passwords do not match.')
             return render(request, 'SignUp.html')
@@ -65,7 +61,7 @@ def signup_view(request):
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Email is already in use.')
             return render(request, 'SignUp.html')
-        
+
         form_data = {
             "first_name": first_name,
             "last_name": last_name,
@@ -75,10 +71,14 @@ def signup_view(request):
             "password2": confirm_password
         }
         form = CustomerUserCreationForm(form_data)
-        
+
         if form.is_valid():
             print('its valid')
             new_user = form.save()
+            # username = form.cleaned_data.get('username')
+            # email = form.cleaned_data.get('email')
+            # password = form.cleaned_data.get('password1')
+            # new_user = User.objects.create(username=username, email=email, password=password)
 
             user_extra = user_info_extend.objects.create(
                 user=new_user,
@@ -87,7 +87,9 @@ def signup_view(request):
             )
 
             login(request, new_user)
+            print(f"${new_user} user logged in")
             return redirect('dashboard')
+        
         else:
             errors = form.errors.as_data()
             for field, field_errors in errors.items():
