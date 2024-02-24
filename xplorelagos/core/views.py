@@ -273,5 +273,5 @@ def review(request):
                         'prices': prices
                         }
     
-        return render(request, 'Dashboard2.html')
+        return render(request, 'Dashboard2.html', context)
 
