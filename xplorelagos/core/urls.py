@@ -21,5 +21,7 @@ urlpatterns = [
     path ('schedule-trip/', views.schedule_trip, name = 'schedule_trip'),
 
     path ('dashboard/review', views.review, name = 'review'),
+    path('callback/', views.callback_view, name='callback'),
+
 
 ]

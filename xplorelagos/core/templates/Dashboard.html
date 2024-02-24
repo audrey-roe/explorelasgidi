@@ -61,64 +61,46 @@
         <h3>Pay Now</h3>
         <!-- Include payment options here -->
       </div>
-      <button class="Checkout" type="button" id="checkoutButton">Check Out</button>
-
-
-
+      <button class="Checkout" type="submit">
+        <a href="https://pay.seerbitapi.com/77688432" target="_blank">Check Out</a>
+    </button>
+    
     </div>
     {% endif %}
 
   </div>
-  <script>
-    document.getElementById("checkoutButton").addEventListener("click", function() {
-        window.open("https://pay.seerbitapi.com/77688432", "_blank");
-    });
-    </script>
-  {% comment %} <script type ="text/javascript">
-    function paywithSeerbit() {
-      SeerbitPay ({
-      "public_key": "sbpub_yywuuuywyyttwttwy", //replace with your public key
-      "tranref": new Date().getTime(), // payment reference
-      "currency": "NGN",
-      "country": "NG",
-      "amount": "150.00",
-      "email": "test@emaildomain.com",
-      "mobile_no": "", // Mobile Number
-      "productId": "", // Product ID
-      "description": "", // Product Description
-      "setAmountByCustomer": false, //optional field. Set to true to allow customer set the amount
-      "full_name": "John Doe", //optional
-      "tokenize" : false, // set to true to allow token capture
-      "planId" : "123456abcd", // subcription plan id.
-      "pocketReference" : "", // pocket reference number.
-      "vendorId" : "", // Vendor ID.
-      "callbackurl": "http://yourdomain.com",
-
-      "decription": "test payment description",
-      
-    Customization: {
-      theme: {
-        border_color: "0000",
-        background_color: "ECECEC",
-        button_color: "000",
-      }, 
-      payment_method: ["card", "account", "transfer", "wallet", "ussd"],
-      confetti: true,
-      logo: "logo_url || base64",
-      }
+  {% comment %} <script type="text/javascript">
+    function paywithSeerbit(userName, userEmail) {
+        SeerbitPay({
+            "public_key": "sbpub_yywuuuywyyttwttwy",
+            "tranref": new Date().getTime().toString(),
+            "currency": "NGN",
+            "country": "NG",
+            "amount": "150.00",
+            "email": userEmail,
+            "description": "Test payment description",
+            "full_name": userName,
+            "callbackurl": "http://127.0.0.1:8000/callback/",
+            "Customization": {
+                "theme": {
+                    "border_color": "0000",
+                    "background_color": "ECECEC",
+                    "button_color": "000"
+                },
+                "payment_method": ["card", "account", "transfer", "wallet", "ussd"],
+                "confetti": true,
+                "logo": "logo_url || base64"
+            }
+        },
+        function callback(response, closeModal) {
+            console.log(response); // Response of transaction
+        },
+        function close(close) {
+            console.log(close); // Transaction close
+        });
     }
-      },
-
-
-
-      function callback(response, closeModal) {
-       console.log(response) //response of transaction
-      },
-      function close(close) {
-       console.log(close) //transaction close
-      })
-      }
   </script> {% endcomment %}
+
 </body>
 
 </html>
