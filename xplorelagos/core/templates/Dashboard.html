@@ -50,7 +50,13 @@
       </div>
       <div class="selected-activities">
         <h3>Selected Activities</h3>
-        {{selected_noPeople}} person/people heading from {{selected_location}}  to:
+        {{selected_noPeople}} person/people heading 
+        <br>
+        from:
+        <br>
+         {{selected_location}}
+        <br>
+        to:
 
         <ul style="display: flex; flex: column" id="selectedActivities">
           {% for option in selected_options %}
