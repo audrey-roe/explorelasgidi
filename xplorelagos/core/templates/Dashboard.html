@@ -11,6 +11,8 @@
 
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js"></script>
+
   <title>Explore Lagos/Experience</title>
 </head>
 
@@ -54,19 +56,69 @@
         <ul id="selectedActivities">{{options}}</ul>
         {%endfor%}
       </div>
-      {% comment %} <div class="payment-options">
-        <h3>Book a Ride</h3>
-        <button class="Checkout" type="submit" onclick="window.location.href = 'TimeAndDate.html';">Ride</button>
-      </div> {% endcomment %}
+      
       <div class="payment-options">
         <h3>Pay Now</h3>
         <!-- Include payment options here -->
       </div>
-      <button class="Checkout" type="submit" onclick="window.location.href = '{% url 'review'%}';">Check Out</button>
+      <button class="Checkout" type="button" id="checkoutButton">Check Out</button>
+
+
+
     </div>
     {% endif %}
 
   </div>
+  <script>
+    document.getElementById("checkoutButton").addEventListener("click", function() {
+        window.open("https://pay.seerbitapi.com/77688432", "_blank");
+    });
+    </script>
+  {% comment %} <script type ="text/javascript">
+    function paywithSeerbit() {
+      SeerbitPay ({
+      "public_key": "sbpub_yywuuuywyyttwttwy", //replace with your public key
+      "tranref": new Date().getTime(), // payment reference
+      "currency": "NGN",
+      "country": "NG",
+      "amount": "150.00",
+      "email": "test@emaildomain.com",
+      "mobile_no": "", // Mobile Number
+      "productId": "", // Product ID
+      "description": "", // Product Description
+      "setAmountByCustomer": false, //optional field. Set to true to allow customer set the amount
+      "full_name": "John Doe", //optional
+      "tokenize" : false, // set to true to allow token capture
+      "planId" : "123456abcd", // subcription plan id.
+      "pocketReference" : "", // pocket reference number.
+      "vendorId" : "", // Vendor ID.
+      "callbackurl": "http://yourdomain.com",
+
+      "decription": "test payment description",
+      
+    Customization: {
+      theme: {
+        border_color: "0000",
+        background_color: "ECECEC",
+        button_color: "000",
+      }, 
+      payment_method: ["card", "account", "transfer", "wallet", "ussd"],
+      confetti: true,
+      logo: "logo_url || base64",
+      }
+    }
+      },
+
+
+
+      function callback(response, closeModal) {
+       console.log(response) //response of transaction
+      },
+      function close(close) {
+       console.log(close) //transaction close
+      })
+      }
+  </script> {% endcomment %}
 </body>
 
 </html>

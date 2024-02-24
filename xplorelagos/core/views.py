@@ -1,5 +1,6 @@
+import os
 import json
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate,login
@@ -8,7 +9,18 @@ from .models import user_info_extend, User
 from .forms import CustomerUserCreationForm
 from django.shortcuts import get_object_or_404, render, redirect
 
+from random import randint
+from seerbit.client import Client
+from seerbit.enums import EnvironmentEnum
+from seerbit.seerbitlib import SeerBit
+from seerbit.service.authentication import Authentication
+from seerbit.service.order_service import OrderService
 # Create your views here.
+
+client = Client()
+
+secret_key = os.getenv('SECRET_KEY')
+public_key = os.getenv('PUBLIC_KEY')
 
 def logout_view(request):
     auth.logout(request)
@@ -17,18 +29,21 @@ def logout_view(request):
 def login_view(request):
     if request.method == 'POST':
         if User.objects.filter(email=request.POST['email']).exists():
-            user = authenticate(request,
-                username=User.objects.get(email=request.POST["email"]).username,
-                password=request.POST["password"]
-            )
+            user=User.objects.get(email=request.POST["email"])
+            login(request, user)
+            request.session['user_id'] = user.id
+            return redirect('dashboard')
+        
+            # user = authenticate(request,
+            #     username=User.objects.get(email=request.POST["email"]).username,
+            #     password=request.POST["password"]
+            # )
 
-            if user is not None:
-                login(request, user)
-                request.session['user_id'] = user.id
-                return redirect('dashboard')
-            else:
-                messages.error(request, 'Incorrect email or password')
-                return redirect('login')
+            # if user is not None:
+                
+            # else:
+            #     messages.error(request, 'Incorrect email or password')
+            #     return redirect('login')
         else:
             messages.error(request, "User doesn't exist. If you don't have an account please create one")
             return redirect('login')
@@ -79,7 +94,6 @@ def signup_view(request):
             )
 
             login(request, new_user)
-            print(f"${new_user} user logged in")
             return redirect('dashboard')
         else:
             errors = form.errors.as_data()
@@ -89,8 +103,6 @@ def signup_view(request):
             return render(request, 'SignUp.html')
 
     return render(request, 'SignUp.html')
-
-
 
 def landingpage(request):
     return render(request, 'Home.html')
@@ -162,7 +174,7 @@ def schedule_trip(request):
             request.session['selected_noPeople'] = request.POST.get('people')  
             request.session['selected_location'] = request.POST.get('selectedLocation')
           
-            return redirect('signup_view')
+            return redirect('sign_up')
 
 def dashboard(request):
     if request.user.is_authenticated:
@@ -200,9 +212,83 @@ def dashboard(request):
 
 def handle_payment(request):
     if request.method == 'POST':
-        print(request.POST)
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        mobile_number = request.POST.get('mobile_number')
+
+        total_amount, orders = calculate_total_amount_and_orders(request.POST)
+
+        # Authenticate with SeerBit and obtain token
+        token = authenticate()
         
+        if token:
+            order_response = order(token, full_name, email, mobile_number, total_amount, orders)
+            print("Order response:", order_response)
+        else:
+            print("Authentication failure")
+
+        return redirect('review')
+
+def calculate_total_amount_and_orders(request, post_data):
+    total_amount = 0
+    orders = []
+    
+    selected_options = request.session.get('selected_options', [])
+    prices = request.session.get('prices', {})
+    
+    for idx, activity in enumerate(selected_options, start=101):
+        if activity in prices:
+            price = float(prices[activity])
+            total_amount += price
+            order_id = str(idx)
+            orders.append({
+                "orderId": order_id,
+                "currency": "USD",
+                "amount": "{:.2f}".format(price),
+                "productId": activity.lower().replace(' ', '_'),
+                "productDescription": activity
+            })
+
+    return total_amount, orders
 
 
 def review(request):
     return render(request, 'Dashboard2.html')
+
+
+def authenticate() -> str:
+    """ User authentication token """
+    print("================== start authentication ==================")
+    client.api_base = SeerBit.LIVE_API_BASE
+    client.environment = EnvironmentEnum.LIVE.value
+    client.private_key = secret_key
+    client.public_key = public_key
+    client.timeout = 20
+    auth_service = Authentication(client)
+    auth_service.auth()
+    print("================== stop authentication ==================")
+    return auth_service.get_token()
+
+
+def order(token_str: str, full_name: str, email: str, mobile_number: str, total_amount: float, orders: list):
+    """ Initiate Order """
+    print("================== start order ==================")
+    random_number = randint(10000000, 99999999)
+    payment_ref = "SBT_" + str(random_number)
+    order_payload = {
+        "email": email,
+        "publicKey": client.public_key,
+        "paymentReference": payment_ref,
+        "fullName": full_name,
+        "orderType": "BULK_BULK",
+        "mobileNumber": mobile_number,
+        "callbackUrl": "https://yourdomain.com",
+        "country": "NG",
+        "currency": "NGN",
+        "amount": "{:.2f}".format(total_amount),
+        "orders": orders
+    }
+    order_service = OrderService(client, token_str)
+    json_response = order_service.authorize(order_payload)
+    print("================== stop order ==================")
+    return json_response

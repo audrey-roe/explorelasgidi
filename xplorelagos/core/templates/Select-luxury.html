@@ -155,25 +155,25 @@
     <script>
         document.getElementById("luxuryForm").addEventListener("submit", function (event) {
             event.preventDefault();
-
-            var selectedOptions = [];
+    
+            var selectedActivities = [];
             var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-
+    
             checkboxes.forEach(function (checkbox) {
-                var optionName = checkbox.value;
-                var optionPrice = checkbox.getAttribute('data-price');
-                selectedOptions.push({
-                    name: optionName,
-                    price: optionPrice
+                var activityName = checkbox.value;
+                var activityPrice = checkbox.getAttribute('data-price');
+                selectedActivities.push({
+                    name: activityName,
+                    price: activityPrice
                 });
             });
-
-            var optionsInput = document.createElement('input');
-            optionsInput.setAttribute('type', 'hidden');
-            optionsInput.setAttribute('name', 'selected_options');
-            optionsInput.setAttribute('value', JSON.stringify(selectedOptions));
-            document.getElementById("luxuryForm").appendChild(optionsInput);
-
+    
+            var activitiesInput = document.createElement('input');
+            activitiesInput.setAttribute('type', 'hidden');
+            activitiesInput.setAttribute('name', 'selected_activities');
+            activitiesInput.setAttribute('value', JSON.stringify(selectedActivities));
+            document.getElementById("luxuryForm").appendChild(activitiesInput);
+    
             this.submit();
         });
     </script>
