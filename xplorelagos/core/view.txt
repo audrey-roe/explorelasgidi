@@ -10,7 +10,7 @@ from .models import user_info_extend, User
 from .forms import CustomerUserCreationForm
 from django.shortcuts import get_object_or_404, render, redirect
 
-from random import randint
+# Create your views here.
 
 secret_key = os.getenv('SECRET_KEY')
 public_key = os.getenv('PUBLIC_KEY')
@@ -131,11 +131,11 @@ def TandD(request):
             activity_price = activity['price']
             prices[activity_name] = activity_price
             
-        request.session['selected_activities'] = selected_activities
+        request.session['selected_options'] = selected_activities
         request.session['prices'] = prices
-
+        print(prices)
         context = {
-            'selected_activities': selected_activities,
+            'selected_options': selected_activities,
             'prices': prices,
         }
         
@@ -145,7 +145,6 @@ def TandD(request):
 
 def schedule_trip(request):
     if request.method == 'POST':
-        print(request.POST)
         if request.user.is_authenticated:
             selected_date = request.POST.get('date')
             selected_startTime = request.POST.get('start-time')
@@ -185,18 +184,20 @@ def dashboard(request):
             selected_noPeople = request.session.get('selected_noPeople')
             selected_location = request.session.get('selected_location')
             prices = request.session.get('prices', {})
-
-            context = {
-                        'user_name': user.first_name + ' ' + user.last_name,
-                        'user_email': user.email,
-                        'selected_options': selected_options,
-                        'selected_date': selected_date,
-                        'selected_startTime': selected_startTime,
-                        'selected_endTime': selected_endTime,
-                        'selected_noPeople': selected_noPeople,
-                        'selected_location': selected_location,
-                        'prices': prices
-                        }
+            if prices:
+                total_amount, orders = calculate_total_amount_and_orders(prices, selected_options)
+                context.update({
+                    'selected_options': selected_options,
+                    'selected_date': selected_date,
+                    'selected_startTime': selected_startTime,
+                    'selected_endTime': selected_endTime,
+                    'selected_noPeople': selected_noPeople,
+                    'selected_location': selected_location,
+                    'prices': prices,
+                    'publicKey': public_key,
+                    'secretKey': secret_key,
+                    'amount': total_amount,
+                })
             return render(request, 'Dashboard.html', context)
 
         return render(request, 'Dashboard.html', context)
@@ -222,56 +223,52 @@ def handle_payment(request):
 
         return redirect('review')
 
-def calculate_total_amount_and_orders(request, post_data):
-    total_amount = 0
-    orders = []
-    
-    selected_options = request.session.get('selected_options', [])
-    prices = request.session.get('prices', {})
-    
-    for idx, activity in enumerate(selected_options, start=101):
-        if activity in prices:
-            price = float(prices[activity])
-            total_amount += price
-            order_id = str(idx)
-            orders.append({
-                "orderId": order_id,
-                "currency": "USD",
-                "amount": "{:.2f}".format(price),
-                "productId": activity.lower().replace(' ', '_'),
-                "productDescription": activity
-            })
-
-    return total_amount, orders
+def calculate_total_amount_and_orders(prices, selected_options,):
+        total_amount = 0
+        orders = []
+        # print(f'prices : {prices} ')
+        for idx, activity in enumerate(selected_options, start=101):
+            if activity in prices:
+                price = float(prices[activity])
+                total_amount += price
+                order_id = str(idx)
+                orders.append({
+                    "orderId": order_id,
+                    "currency": "USD",
+                    "amount": "{:.2f}".format(price),
+                    "productId": activity.lower().replace(' ', '_'),
+                    "productDescription": activity
+                })
+        return total_amount, orders
 
 def review(request):
-     if request.user.is_authenticated:
+    if request.user.is_authenticated:
         user = request.user
-        
-        context = {
-            'user_name': user.first_name + ' ' + user.last_name,
-            'user_email': user.email
-        }
         if request.session:
-            selected_options = request.session.get('selected_options', [])
-            selected_date = request.session.get('selected_date')
-            selected_startTime = request.session.get('selected_startTime')
-            selected_endTime = request.session.get('selected_endTime')
-            selected_noPeople = request.session.get('selected_noPeople')
-            selected_location = request.session.get('selected_location')
-            prices = request.session.get('prices', {})
+                selected_options = request.session.get('selected_options', [])
+                selected_date = request.session.get('selected_date')
+                selected_startTime = request.session.get('selected_startTime')
+                selected_endTime = request.session.get('selected_endTime')
+                selected_noPeople = request.session.get('selected_noPeople')
+                selected_location = request.session.get('selected_location')
+                prices = request.session.get('prices', {})
+                total_amount, orders = calculate_total_amount_and_orders(prices, selected_options)
 
-            context = {
-                        'user_name': user.first_name + ' ' + user.last_name,
-                        'user_email': user.email,
-                        'selected_options': selected_options,
-                        'selected_date': selected_date,
-                        'selected_startTime': selected_startTime,
-                        'selected_endTime': selected_endTime,
-                        'selected_noPeople': selected_noPeople,
-                        'selected_location': selected_location,
-                        'prices': prices
-                        }
+                context = {
+                            'user_name': user.first_name + ' ' + user.last_name,
+                            'user_email': user.email,
+                            'selected_options': selected_options,
+                            'selected_date': selected_date,
+                            'selected_startTime': selected_startTime,
+                            'selected_endTime': selected_endTime,
+                            'selected_noPeople': selected_noPeople,
+                            'selected_location': selected_location,
+                            'prices': prices,
+                            'publicKey': public_key,
+                            'secretKey': secret_key,
+                            'amount': total_amount,
+                            'orders': orders
+                            }
     
-        return render(request, 'Dashboard2.html')
+    return render(request, 'Dashboard2.html', context)
 

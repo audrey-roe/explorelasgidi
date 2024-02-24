@@ -23,5 +23,4 @@ urlpatterns = [
     path ('dashboard/review', views.review, name = 'review'),
     path('callback/', views.callback_view, name='callback'),
 
-
 ]

@@ -52,29 +52,33 @@
         <h3>Selected Activities</h3>
         {{selected_noPeople}} person/people heading from {{selected_location}}  to:
 
-        {% for options in selected_options %}
-        <ul id="selectedActivities">{{options}}</ul>
-        {%endfor%}
+        <ul style="display: flex; flex: column" id="selectedActivities">
+          {% for option in selected_options %}
+            <li style="color: black; font-size: smaller;">Name: {{ option.name }}</li>
+            <li style="color: black; font-size: smaller;">Price: {{ option.price }}</li>
+
+          {% endfor %}
+        </ul>
+        
       </div>
       
       <div class="payment-options">
         <h3>Pay Now</h3>
         <!-- Include payment options here -->
       </div>
+      {% comment %} <button class="Checkout" type="button" onclick="paywithSeerbit('{{ user_name }}', '{{ user_email }}', '{{ public_key }}', '{{ secret_key }}', {{amount}})">Check Out</button> {% endcomment %}
       <button class="Checkout" type="submit">
         <a href="https://pay.seerbitapi.com/77688432" target="_blank">Check Out</a>
-    </button>
-    
     </div>
     {% endif %}
 
   </div>
-  {% comment %} <script type="text/javascript">
-    function paywithSeerbit(userName, userEmail) {
-        SeerbitPay({
-            "public_key": "sbpub_yywuuuywyyttwttwy",
+  <script type="text/javascript">
+    function paywithSeerbit(userName, userEmail, publicKey, secretKey, amount) {
+      SeerbitPay({
+            "public_key": publicKey,
             "tranref": new Date().getTime().toString(),
-            "currency": "NGN",
+            "currency": "USD",
             "country": "NG",
             "amount": "150.00",
             "email": userEmail,
@@ -99,7 +103,7 @@
             console.log(close); // Transaction close
         });
     }
-  </script> {% endcomment %}
+  </script>
 
 </body>
 
