@@ -35,7 +35,7 @@
     </div>
     <p class="expereience_Text">Select-Luxury</p>
     <hr>
-    <form method="post" action="{% url 'time_and_date' %}">
+    <form method="post" action="{% url 'time_and_date' %}" id="luxuryForm">
         {% csrf_token %}
 
         <div class="container">
@@ -47,16 +47,16 @@
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
                         <h3>Hov Beach Resort</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Hov Beach Resort"> Select
+                            <input type="checkbox" name="selected_options" value="Hov Beach Resort" data-price="100">
+                            Select
                         </label>
                     </div>
-
                 </div>
                 <div class="box2">
                     <div class="experience_Description">
@@ -65,13 +65,14 @@
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
                         <h3>Jara Beach Resort</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Jara Beach Resort"> Select
+                            <input type="checkbox" name="selected_options" value="Jara Beach Resort" data-price="100">
+                            Select
                         </label>
                     </div>
                 </div>
@@ -82,13 +83,14 @@
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
-                        <h3>La Capagne Tropcna</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <h3>La Capagne Tropicana</h3>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="La Capagne Tropcna"> Select
+                            <input type="checkbox" name="selected_options" value="La Capagne Tropicana"
+                                data-price="100"> Select
                         </label>
                     </div>
                 </div>
@@ -101,16 +103,15 @@
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
                         <h3>Laokwe Lakes</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Laokwe Lakes"> Select
+                            <input type="checkbox" name="selected_options" value="Laokwe Lakes" data-price="100"> Select
                         </label>
                     </div>
-                    </label>
                 </div>
                 <div class="box5">
                     <div class="experience_Description">
@@ -119,13 +120,14 @@
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
                         <h3>Laygos Watercraft</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Laygos Watercraft"> Select
+                            <input type="checkbox" name="selected_options" value="Laygos Watercraft" data-price="100">
+                            Select
                         </label>
                     </div>
                 </div>
@@ -136,13 +138,13 @@
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
                         <h3>ZAZA</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="ZAZA"> Select
+                            <input type="checkbox" name="selected_options" value="ZAZA" data-price="100"> Select
                         </label>
                     </div>
                 </div>
@@ -150,6 +152,32 @@
             <button class="Checkout" type="submit">Check Out</button>
         </div>
     </form>
+    <script>
+        document.getElementById("luxuryForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var selectedOptions = [];
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            checkboxes.forEach(function (checkbox) {
+                var optionName = checkbox.value;
+                var optionPrice = checkbox.getAttribute('data-price');
+                selectedOptions.push({
+                    name: optionName,
+                    price: optionPrice
+                });
+            });
+
+            var optionsInput = document.createElement('input');
+            optionsInput.setAttribute('type', 'hidden');
+            optionsInput.setAttribute('name', 'selected_options');
+            optionsInput.setAttribute('value', JSON.stringify(selectedOptions));
+            document.getElementById("luxuryForm").appendChild(optionsInput);
+
+            this.submit();
+        });
+    </script>
+
 </body>
 
 </html>

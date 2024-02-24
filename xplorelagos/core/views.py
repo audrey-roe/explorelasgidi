@@ -114,20 +114,29 @@ def luxury(request):
     return render(request, 'Select-luxury.html')
 
 def TandD(request):
-    print(request.body)
     if request.method == 'POST':
-        print(request.POST)
-        selected_options = request.POST.getlist('selected_options')
-        request.session['selected_options'] = selected_options
+        post_data = request.POST
+        selected_activities_json = post_data.get('selected_activities')
+        selected_activities = json.loads(selected_activities_json)
+
+        prices = {}
+
+        for activity in selected_activities:
+            activity_name = activity['name']
+            activity_price = activity['price']
+            prices[activity_name] = activity_price
+            
+        request.session['selected_activities'] = selected_activities
+        request.session['prices'] = prices
 
         context = {
-            'selected_options': selected_options,
+            'selected_activities': selected_activities,
+            'prices': prices,
         }
         
         return render(request, 'TimeAndDate.html', context)
     else:
         return render(request, 'TimeAndDate.html')
-    
 
 def schedule_trip(request):
     if request.method == 'POST':
@@ -170,6 +179,7 @@ def dashboard(request):
             selected_endTime = request.session.get('selected_endTime')
             selected_noPeople = request.session.get('selected_noPeople')
             selected_location = request.session.get('selected_location')
+            prices = request.session.get('prices', {})
 
             context = {
                         'user_name': user.first_name + ' ' + user.last_name,
@@ -179,13 +189,20 @@ def dashboard(request):
                         'selected_startTime': selected_startTime,
                         'selected_endTime': selected_endTime,
                         'selected_noPeople': selected_noPeople,
-                        'selected_location': selected_location
+                        'selected_location': selected_location,
+                        'prices': prices
                         }
             return render(request, 'Dashboard.html', context)
 
         return render(request, 'Dashboard.html', context)
     else:
         return render(request, 'Sign.html')
+
+def handle_payment(request):
+    if request.method == 'POST':
+        print(request.POST)
+        
+
 
 def review(request):
     return render(request, 'Dashboard2.html')

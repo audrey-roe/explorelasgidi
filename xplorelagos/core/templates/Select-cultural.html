@@ -33,119 +33,146 @@
         </div>
     </div>
     <p class="expereience_Text">Select A Cultural Experience</p>
-    <hr>
-    <form method="post" action="{% url 'time_and_date' %}">
-        {% csrf_token %}
-        <div class="container">
-            <div class="row">
-                <div class="box1">
-                    <div class="experience_Description">
-                        <ol>
-                            <li>One Entry ticket</li>
-                            <li>One course meal</li>
-                            <li>A Bottle of water</li>
-                        </ol>
-                    </div>    
-                    <div class="Box-details">
-                        <h3>Badagry Slave</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
-                        <label>
-                            <input type="checkbox" name="selected_options" value="Badagry Slave"> Select
-                        </label>
-                    </div>
-                </div>
-                <div class="box2">
-                    <div class="experience_Description">
-                        <ol>
-                            <li>One Entry ticket</li>
-                            <li>One course meal</li>
-                            <li>A Bottle of water</li>
-                        </ol>
-                    </div>    
-                      
-                    <div class="Box-details">
-                        <h3>Freedom Park Price</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
-                        <label>
-                            <input type="checkbox" name="selected_options" value="Cathedral Church"> Select
-                        </label>
-                    </div>
-                </div>
-                <div class="box3">
-                    <div class="experience_Description">
-                        <ol>
-                            <li>One Entry ticket</li>
-                            <li>One course meal</li>
-                            <li>A Bottle of water</li>
-                        </ol>
-                    </div>    
-                    <div class="Box-details">
-                        <h3>Freedom Park Price</h3>
-                        <label>
-                            <input type="checkbox" name="selected_options" value="Freedom Park"> Select
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="box4">
-                    <div class="experience_Description">
-                        <ol>
-                            <li>One Entry ticket</li>
-                            <li>One course meal</li>
-                            <li>A Bottle of water</li>
-                        </ol>
-                    </div>    
-                    <div class="Box-details">
-                        <h3>Kalakuta Museum.</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
-                        <label>
-                            <input type="checkbox" name="selected_options" value="Kalakuta Museum"> Select
-                        </label>
-                    </div>
+<hr>
+<form method="post" action="{% url 'time_and_date' %}" id="culturalForm">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="box1">
+                <div class="experience_Description">
+                    <ol>
+                        <li>One Entry ticket</li>
+                        <li>One course meal</li>
+                        <li>A Bottle of water</li>
+                    </ol>
+                </div>    
+                <div class="Box-details">
+                    <h3>Badagry Slave</h3>
+                    <span> Price: $</span> 
+                    <span class="price_tag" data-price="100">100</span>
+                    <label>
+                        <input type="checkbox" name="selected_options" value="Badagry Slave" data-price="100"> Select
                     </label>
                 </div>
-                <div class="box5">
-                    <div class="experience_Description">
-                        <ol>
-                            <li>One Entry ticket</li>
-                            <li>One course meal</li>
-                            <li>A Bottle of water</li>
-                        </ol>
-                    </div>    
-                    <div class="Box-details">
-                        <h3>Lekki Art Market</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
-                        <label>
-                            <input type="checkbox" name="selected_options" value="Lekki Art Market"> Select
-                        </label>
-                    </div>
-                </div>
-                <div class="box6">
-                    <div class="experience_Description">
-                        <ol>
-                            <li>One Entry ticket</li>
-                            <li>One course meal</li>
-                            <li>A Bottle of water</li>
-                        </ol>
-                    </div>    
-                    <div class="Box-details">
-                        <h3>Nike Art Gallery</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
-                        <label>
-                            <input type="checkbox" name="selected_options" value="Nike Art Gallery"> Select
-                        </label>
-                    </div>
+            </div>
+            <div class="box2">
+                <div class="experience_Description">
+                    <ol>
+                        <li>One Entry ticket</li>
+                        <li>One course meal</li>
+                        <li>A Bottle of water</li>
+                    </ol>
+                </div>    
+                <div class="Box-details">
+                    <h3>Cathedral Church</h3>
+                    <span> Price: $</span> 
+                    <span class="price_tag" data-price="100">120</span>
+                    <label>
+                        <input type="checkbox"  name="selected_options" value="Cathedral Church " data-price="100"> Select
+                    </label>
                 </div>
             </div>
-            <button class="Checkout" type="submit">Check Out</button>
+            <div class="box3">
+                <div class="experience_Description">
+                    <ol>
+                        <li>One Entry ticket</li>
+                        <li>One course meal</li>
+                        <li>A Bottle of water</li>
+                    </ol>
+                </div>    
+                <div class="Box-details">
+                    <h3>Freedom Park</h3>
+                    <span> Price: $</span> 
+                    <span class="price_tag" data-price="100">100</span>
+                    <label>
+                        <input type="checkbox" name="selected_options" value="Freedom Park" data-price="100"> Select
+                    </label>
+                </div>
+            </div>
+            
         </div>
-    </form>
+        <div class="row">
+            <div class="box4">
+                <div class="experience_Description">
+                    <ol>
+                        <li>One Entry ticket</li>
+                        <li>One course meal</li>
+                        <li>A Bottle of water</li>
+                    </ol>
+                </div>    
+                <div class="Box-details">
+                    <h3>Kalakuta Museum</h3>
+                    <span> Price: $</span> 
+                    <span class="price_tag" data-price="100">100</span>
+                    <label>
+                        <input type="checkbox" name="selected_options" value="Kalakuta Museum" data-price="100"> Select
+                    </label>
+                </div>
+            </div>
+            <div class="box5">
+                <div class="experience_Description">
+                    <ol>
+                        <li>One Entry ticket</li>
+                        <li>One course meal</li>
+                        <li>A Bottle of water</li>
+                    </ol>
+                </div>    
+                <div class="Box-details">
+                    <h3>Lekki Art Market</h3>
+                    <span> Price: $</span> 
+                    <span class="price_tag" data-price="100">100</span>
+                    <label>
+                        <input type="checkbox" name="selected_options" value="Lekki Art Market" data-price="100"> Select
+                    </label>
+                </div>
+            </div>
+            <div class="box6">
+                <div class="experience_Description">
+                    <ol>
+                        <li>One Entry ticket</li>
+                        <li>One course meal</li>
+                        <li>A Bottle of water</li>
+                    </ol>
+                </div>    
+                <div class="Box-details">
+                    <h3>Nike Art Gallery</h3>
+                    <span> Price: $</span> 
+                    <span class="price_tag" data-price="100">100</span>
+                    <label>
+                        <input type="checkbox" name="selected_options" value="Nike Art Gallery" data-price="100"> Select
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button class="Checkout" type="submit">Check Out</button>
+    </div>
+</form>
+<script>
+    document.getElementById("culturalForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var selectedActivities = [];
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+        checkboxes.forEach(function (checkbox) {
+            var activityName = checkbox.value;
+            var activityPrice = checkbox.getAttribute('data-price');
+            selectedActivities.push({
+                name: activityName,
+                price: activityPrice
+            });
+        });
+
+        var activitiesInput = document.createElement('input');
+        activitiesInput.setAttribute('type', 'hidden');
+        activitiesInput.setAttribute('name', 'selected_activities');
+        activitiesInput.setAttribute('value', JSON.stringify(selectedActivities));
+        document.getElementById("culturalForm").appendChild(activitiesInput);
+
+        this.submit();
+    });
+</script>
+
 </body>
 
 </html>

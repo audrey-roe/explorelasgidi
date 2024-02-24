@@ -36,9 +36,9 @@
 
     <hr>
 
-    <form method="post" action="{% url 'time_and_date' %}">
+    <form method="post" action="{% url 'time_and_date' %}" id="culinaryForm">
         {% csrf_token %}
-    
+        
         <div class="container">
             <div class="row">
                 <div class="box1">
@@ -52,9 +52,9 @@
                     <div class="Box-details">
                         <h3>Bature Brewery</h3>
                         <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_lekki">120</span> 
+                        <span class="price_tag" data-price="120">120</span> 
                         <label>
-                            <input type="checkbox" name="selected_options" value="Bature Brewery"> Select
+                            <input type="checkbox" name="selected_options" value="Bature Brewery" data-price="120"> Select
                         </label>
                     </div>
                 </div>
@@ -69,9 +69,9 @@
                     <div class="Box-details">
                         <h3>Danfo Bistro</h3>
                         <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">120</span>
+                        <span class="price_tag" data-price="120">120</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Danfo Bistro"> Select
+                            <input type="checkbox" name="selected_options" value="Danfo Bistro" data-price="120"> Select
                         </label>
                     </div>
                 </div>
@@ -86,9 +86,9 @@
                     <div class="Box-details">
                         <h3>Dune Chocolate Factory</h3>
                         <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">120</span>
+                        <span class="price_tag" data-price="120">120</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Dune Chocolate Factory"> Select
+                            <input type="checkbox" name="selected_options" value="Dune Chocolate Factory" data-price="120"> Select
                         </label>
                     </div>
                 </div>
@@ -103,11 +103,11 @@
                         </ol>
                     </div>    
                     <div class="Box-details">
-                        <h3>Jallof by jara Price</h3>
+                        <h3>Jallof by Jara Price</h3>
                         <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Jallof by Jara"> Select
+                            <input type="checkbox" name="selected_options" value="Jallof by Jara" data-price="100"> Select
                         </label>
                     </div>
                 </div>
@@ -122,9 +122,9 @@
                     <div class="Box-details">
                         <h3>NOK</h3>
                         <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="NOK"> Select
+                            <input type="checkbox" name="selected_options" value="NOK" data-price="100"> Select
                         </label>
                     </div>
                 </div>
@@ -137,10 +137,11 @@
                         </ol>
                     </div>    
                     <div class="Box-details">
-                        <h3>Whinehouse Ikoyi Price</h3>                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <h3>Whinehouse Ikoyi Price</h3>                        
+                        <span> Price: $</span> 
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Whinehouse Ikoyi"> Select
+                            <input type="checkbox" name="selected_options" value="Whinehouse Ikoyi" data-price="100"> Select
                         </label>
                     </div>
                 </div>
@@ -148,6 +149,33 @@
             <button class="Checkout" type="submit">Check Out</button>
         </div>
     </form>
+    
+    <script>
+        document.getElementById("culinaryForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            var selectedActivities = [];
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    
+            checkboxes.forEach(function (checkbox) {
+                var activityName = checkbox.value;
+                var activityPrice = checkbox.getAttribute('data-price');
+                selectedActivities.push({
+                    name: activityName,
+                    price: activityPrice
+                });
+            });
+    
+            var activitiesInput = document.createElement('input');
+            activitiesInput.setAttribute('type', 'hidden');
+            activitiesInput.setAttribute('name', 'selected_activities');
+            activitiesInput.setAttribute('value', JSON.stringify(selectedActivities));
+            document.getElementById("adventureForm").appendChild(activitiesInput);
+    
+            this.submit();
+        });
+    </script>
+    
     
 </body>
 

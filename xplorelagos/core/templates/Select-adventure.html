@@ -13,14 +13,14 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Explore Lagos/Experience</title>
     <style>
-        .price_tag{
+        .price_tag {
             font-size: 20px;
             font-weight: bold;
             text-decoration: none;
         }
-        .check_adventure{
-            display:flex
-            flex-direction: column;
+
+        .check_adventure {
+            display: flex flex-direction: column;
         }
     </style>
 </head>
@@ -46,11 +46,11 @@
     </div>
     <p class="expereience_Text">Choose Your Adventure</p>
     <hr>
-    <form method="post" action="{% url 'time_and_date' %}">
+    <form method="post" action="{% url 'time_and_date' %}" id="activityForm">
         {% csrf_token %}
         <div class="container">
             <div class="row">
-                <div class="box1">
+                <div class="box1 activity">
                     <div class="experience_Description">
                         <ol>
                             <li>One Entry ticket</li>
@@ -58,34 +58,37 @@
                             <li>Kayaking</li>
                             <li>Fishing</li>
                         </ol>
-                    </div>    
+                    </div>
                     <div class="Box-details">
                         <h3>Laygos Water crafts </h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_laygos">300</span> 
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="300">300</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Laygos Water craft"> Select
+                            <input type="checkbox" name="selected_options" value="Laygos Water craft" data-price="300">
+                            Select
                         </label>
                     </div>
-
                 </div>
-                <div class="box2">
+
+                <div class="box2 activity">
                     <div class="experience_Description">
                         <ol>
                             <li>One Entry ticket</li>
                             <li>A bottle of water </li>
                         </ol>
-                    </div>  
+                    </div>
                     <div class="Box-details">
                         <h3>Lekki Conservation</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_lekki">15</span> 
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="15">15</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Lekki Conservation"> Select
+                            <input type="checkbox" name="selected_options" value="Lekki Conservation" data-price="15">
+                            Select
                         </label>
                     </div>
                 </div>
-                <div class="box3">
+
+                <div class="box3 activity">
                     <div class="experience_Description">
                         <ol>
                             <li>Free Entry </li>
@@ -94,77 +97,107 @@
                             <li>Souvenir</li>
                             <li>Bottomless Cocktail/Mocktail</li>
                         </ol>
-                    </div>  
+                    </div>
                     <div class="Box-details">
                         <h3>New Afrika shrine Price</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_afrika">100</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="100">100</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="New afrika shrine"> Select
+                            <input type="checkbox" name="selected_options" value="New Afrika shrine" data-price="100">
+                            Select
                         </label>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="box4">
+
+                <div class="box4 activity">
                     <div class="experience_Description">
                         <ol>
                             <li>Smash room experience</li>
                             <li>Smash and splash room experience</li>
                             <li>A Bottle of water</li>
-    
                         </ol>
-                    </div>  
+                    </div>
                     <div class="Box-details">
                         <h3>Rage Room.</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_rage">50</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="50">50</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Rage Room"> Select
+                            <input type="checkbox" name="selected_options" value="Rage Room" data-price="50"> Select
                         </label>
                     </div>
-                    </label>
                 </div>
-                <div class="box5">
+
+                <div class="box5 activity">
                     <div class="experience_Description">
                         <ol>
                             <li>A box of Pizza</li>
                             <li>Mocktail</li>
                             <li>Rechargeable Buzzcard</li>
                         </ol>
-                    </div>  
+                    </div>
                     <div class="Box-details">
                         <h3>Rufus and Bees</h3>
-                        <span> Price: $</span> 
-                        <span class="price_tag" id="price_tag_rnb">30</span>
+                        <span> Price: $</span>
+                        <span class="price_tag" data-price="30">30</span>
                         <label>
-                            <input type="checkbox" name="selected_options" value="Rufus and Bees"> Select
+                            <input type="checkbox" name="selected_options" value="Rufus and Bees" data-price="30">
+                            Select
                         </label>
                     </div>
                 </div>
-                <div class="box6">
+
+                <div class="box6 activity">
                     <div class="experience_Description">
                         <ol>
                             <li>One Entry ticket</li>
                             <li>One course meal</li>
                             <li>A Bottle of water</li>
                         </ol>
-                    </div>  
+                    </div>
                     <div class="Box-details">
-                        
+
                         <label class="check_adventure">
-                            <h3>Upbeat Reacreational</h3>
-                            <span> Price: $</span> 
-                            <span class="price_tag" id="price_tag_rnb">40</span>
-                            <input type="checkbox" name="selected_options" value="Upbeat Reacreational"> Select
+                            <h3>Upbeat Recreational</h3>
+                            <span> Price: $</span>
+                            <span class="price_tag" data-price="40">40</span>
+                            <input type="checkbox" name="selected_options" value="Upbeat Recreational" data-price="40">
+                            Select
                         </label>
                     </div>
-
                 </div>
             </div>
             <button class="Checkout" type="submit">Check Out</button>
         </div>
     </form>
+
+    <script>
+        document.getElementById("activityForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var selectedActivities = [];
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            checkboxes.forEach(function (checkbox) {
+                var activityName = checkbox.value;
+                var activityPrice = checkbox.getAttribute('data-price');
+                selectedActivities.push({
+                    name: activityName,
+                    price: activityPrice
+                });
+            });
+
+            var activitiesInput = document.createElement('input');
+            activitiesInput.setAttribute('type', 'hidden');
+            activitiesInput.setAttribute('name', 'selected_activities');
+            activitiesInput.setAttribute('value', JSON.stringify(selectedActivities));
+            document.getElementById("activityForm").appendChild(activitiesInput);
+
+            this.submit();
+        });
+    </script>
+
 </body>
 
 </html>
