@@ -155,7 +155,7 @@ MEDIAFILES_DIRS = [
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Database-backed sessions
 
 # Session cookie age (in seconds) - set as desired
-SESSION_COOKIE_AGE = 3600
+SESSION_COOKIE_AGE = 10600
 
 # Session cookie name
 SESSION_COOKIE_NAME = 'sessionid'  # Default value
